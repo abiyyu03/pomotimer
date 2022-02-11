@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>Pomodoro Timer</title>
+</head>
+<body class="bg-dark">
+    <div class="container mb-4">
+        <div class="row mt-4">
+            <div class="card w-75 mx-auto mt-4">
+                <!-- Card Header -->
+                <div class="card-header" style="background-color:rgb(255, 60, 0);" id="titleHeader">
+                    <h4 class="text-center text-light mb-0" id="title">Pomodoro Setup</h4>
+                </div>
+                <!-- End of Card Header -->
+                <!-- Body Card -->
+                <div class="card-shadow p-2 ">
+                    <div class="card-body ">
+                        <h2 class="text-center display-2" id="labelTimer">0:0</h2>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <select id="setTimer" class="form-control mb-4" onchange="enableStartButton()">
+                                    <option value="none">Set Minutes</option>
+                                    <option value="1">1 Minutes</option>
+                                    <option value="5">5 Minutes</option>
+                                    <option value="10">10 Minutes</option>
+                                    <option value="15">15 Minutes</option>
+                                    <option value="20">20 Minutes</option>
+                                    <option value="25">25 Minutes</option>
+                                    <option value="30">30 Minutes</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <select id="setBreak" class="form-control mb-4">
+                                    <option value="none">Set Minutes of Break</option>
+                                    <option value="1">1 Minutes</option>
+                                    <option value="5">5 Minutes</option>
+                                    <option value="10">10 Minutes</option>
+                                    <option value="15">15 Minutes</option>
+                                </select>
+                            </div>
+                        </div>
+                        <select id="setIntervals" class="form-control mb-4">
+                            <option value="none">-How many interval you want-</option>
+                            <option value="2">Twice</option>
+                            <option value="3">Three Times</option>
+                            <option value="4">Four Times (Recommend)</option>
+                        </select>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <button class="btn btn-success form-control" Disabled="true" id="buttonStart"
+                                    onclick="timer()">Start</button>
+                            </div>
+                            <div class="col-sm-6 mt-1">
+                                <button class="btn btn-danger form-control" disabled id="buttonReset"
+                                    onclick="resetTimer()">Reset</button>
+                            </div>
+                        </div>
+                        <audio src="alarm/alarm.mp3" id="alarm" hidden></audio>
+                    </div>
+                </div>
+                <!-- End of Body Card -->
+            </div>
+        </div>
+    </div>
+    <footer class="footer text-center bg-light mt-auto py-3">
+        <div class="container">
+            <p>Created by <a href="https://github.com/abiyyu03">@abiyyu03</a></p>
+            <p>Special Thanks to <a href="https://github.com/amar-ti2021">@amar-ti2021</a></p>
+        </div>
+    </footer>
+</body>
+<script src="js/bootstrap.min.js"></script>
+<script src="timer.js"></script>
+
+</html>
