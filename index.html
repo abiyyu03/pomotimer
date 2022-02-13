@@ -50,6 +50,20 @@
                             <option value="3">Three Times</option>
                             <option value="4">Four Times (Recommend)</option>
                         </select>
+                        <div class="form-group">
+                            <label for="timerAudio">Timer Sound</label>
+                            <select id="setIntervals" class="form-control mb-4">
+                                <option value="none">-</option>
+                                <option value="beepbeep">Beep-Beep</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="timerAudio">Break Sound</label>
+                            <select id="setIntervals" class="form-control mb-4">
+                                <option value="none">-</option>
+                                <option value="someonevoice">Someone's voice</option>
+                            </select>
+                        </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <button class="btn btn-success form-control" Disabled="true" id="buttonStart"
@@ -60,7 +74,8 @@
                                     onclick="resetTimer()">Reset</button>
                             </div>
                         </div>
-                        <audio src="alarm/alarm.mp3" id="alarm" hidden></audio>
+                        <audio id="alarmTimer" hidden></audio>
+                        <audio id="alarmBreak" hidden></audio>
                     </div>
                 </div>
                 <!-- End of Body Card -->

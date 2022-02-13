@@ -1,11 +1,12 @@
 let intervals = 0;
-let checkTimerOrBreak = 0
+let checkTimerOrBreak = 0;
 //for check active function
 // let running = false;
 function timer() 
 {
     let setTimer = parseInt(document.getElementById("setTimer").value);
-    let alarm = document.getElementById("alarm");
+    let alarmBreak = document.getElementById("alarmBreak");
+    alarmBreak.src = "alarm/break.m4a"
     //   running = !running;
     document.getElementById("titleHeader").class = "bg-primary";
     document.getElementById("buttonStart").disabled = true;
@@ -15,18 +16,22 @@ function timer()
     document.getElementById("setIntervals").disabled = true;
     document.getElementById("labelTimer").innerHTML = setTimer + " : " + "00";
     
-    setTimer -= 1;
-    if(checkTimerOrBreak == 0){
+    checkTimerOrBreak+=1;
+    if(checkTimerOrBreak == 1){
         seconds = 60;
+        setTimer -= 1;
+    } else {
+        setTimer -= 1;
+        seconds = 59;
+            
     }
+    // console.log(checkTimerOrBreak)
     
     runTimer = setInterval(function () {
         seconds--;
         if (setTimer === 0 && seconds === -1) {
             clearInterval(runTimer);
-            checkTimerOrBreak += 1
-            console.log(checkTimerOrBreak)
-            alarm.play();
+            alarmBreak.play();
             breakTimer();
         }
         if (seconds == -1) {
@@ -35,24 +40,31 @@ function timer()
         }
         document.getElementById("labelTimer").innerHTML =
         setTimer + " : " + seconds;
-    }, 200);
+    }, 1000);
 }
 function breakTimer() 
 {
     let setBreak = parseInt(document.getElementById("setBreak").value);
     let setIntervals = parseInt(document.getElementById("setIntervals").value);
+    let alarmTimer = document.getElementById("alarmTimer");
+    alarmTimer.src = "alarm/alarm.mp3";
     //   running = !running;
     document.getElementById("labelTimer").innerHTML = setBreak + " : " + "00";
 
-    if(checkTimerOrBreak == 1)
+    checkTimerOrBreak+=1;
+    if(checkTimerOrBreak == 2)
     {
         seconds = 59;
+        setBreak -= 1;
+    }else {
+        setBreak -= 1;
+        seconds = 59;
     }
-    setBreak -= 1;
+    // console.log(checkTimerOrBreak)
 
     runBreak = setInterval(function () {
         seconds--;
-        if (setBreak === 0 && seconds === 0) {
+        if (setBreak === 0 && seconds === -1) {
             intervals += 1;
             if (intervals === setIntervals) {
                 alert(
@@ -61,29 +73,27 @@ function breakTimer()
                     clearInterval(runBreak);
                     return;
                 } else {
-                    alarm.play();
-                    checkTimerOrBreak += 1;
-                    console.log(checkTimerOrBreak)
+                    alarmTimer.play();
                     clearInterval(runBreak);
                     timer();
                 }
             }
-            if (seconds == 0) {
+            if (seconds == -1) {
                 setBreak -= 1;
                 seconds = 59;
             }
             document.getElementById("labelTimer").innerHTML =
             setBreak + " : " + seconds;
-        }, 200);
+        }, 1000);
     }
     
     // Reset Timer
     function resetTimer() 
     {
-        if(checkTimerOrBreak == 0 && checkTimerOrBreak % 2 == 0)
+        if(checkTimerOrBreak == 1 || checkTimerOrBreak % 2 != 0)
         {
             intervals = 0;
-            checkTimerOrBreak = 0
+            checkTimerOrBreak = 0;
             clearInterval(runTimer);
             document.getElementById("labelTimer").innerHTML = "00:00";
             setTimer = "Set Minutes";
@@ -93,10 +103,10 @@ function breakTimer()
             document.getElementById("setTimer").disabled = false;
             document.getElementById("setBreak").disabled = false;
             document.getElementById("setIntervals").disabled = false;
-        } else if (checkTimerOrBreak % 2 != 0) {
+        } else {
             intervals = 0
             clearInterval(runBreak)
-            checkTimerOrBreak = 0
+            checkTimerOrBreak = 0;
             setTimer = "Set Minutes"
             setBreak = "Set Minutes of Break"
             document.getElementById("labelTimer").innerHTML = "00:00";
