@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <title>Pomodoro Timer</title>
+    <title id="title">Pomotimer Setup</title>
 </head>
 <body class="bg-dark">
     <div class="container mb-4">
@@ -14,71 +14,109 @@
             <div class="card w-75 mx-auto mt-4">
                 <!-- Card Header -->
                 <div class="card-header bg-success" id="titleHeader">
-                    <h4 class="text-center text-light mb-0" id="title">Pomodoro Setup</h4>
+                    <h3 class="text-center text-light mb-0" id="titleText">Pomodoro Setup</h3>
                 </div>
                 <!-- End of Card Header -->
                 <!-- Body Card -->
                 <div class="card-shadow p-2 ">
                     <div class="card-body ">
-                        <h2 class="text-center display-2" id="labelTimer">0:0</h2>
+                        <h1 class="text-center display-2" id="labelTimer">0:0</h1>
                         <div class="row">
                             <div class="col-sm-6">
-                                <select id="setTimer" class="form-control mb-4" onchange="enableStartButton()">
-                                    <option value="none">Set Minutes</option>
-                                    <option value="1">1 Minutes</option>
-                                    <option value="5">5 Minutes</option>
-                                    <option value="10">10 Minutes</option>
-                                    <option value="15">15 Minutes</option>
-                                    <option value="20">20 Minutes</option>
-                                    <option value="25">25 Minutes</option>
-                                    <option value="30">30 Minutes</option>
-                                </select>
+                                <div class="form-group">
+                                    <label for="setTimer">Set Minutes</label>
+                                    <select id="setTimer" class="form-control mb-4" onchange="enableStartButton()">
+                                        <option value="none">-</option>
+                                        <option value="1">1 Minutes</option>
+                                        <option value="5">5 Minutes</option>
+                                        <option value="10">10 Minutes</option>
+                                        <option value="15">15 Minutes</option>
+                                        <option value="20">20 Minutes</option>
+                                        <option value="25">25 Minutes</option>
+                                        <option value="30">30 Minutes</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="col-sm-6">
-                                <select id="setBreak" class="form-control mb-4">
-                                    <option value="none">Set Minutes of Break</option>
-                                    <option value="1">1 Minutes</option>
-                                    <option value="5">5 Minutes</option>
-                                    <option value="10">10 Minutes</option>
-                                    <option value="15">15 Minutes</option>
-                                </select>
+                                <div class="form-group">
+                                    <label for="setBreak">Set Minutes of Break</label>
+                                    <select id="setBreak" class="form-control mb-4" onchange="enableStartButton()">
+                                        <option value="none">-</option>
+                                        <option value="1">1 Minutes</option>
+                                        <option value="5">5 Minutes</option>
+                                        <option value="10">10 Minutes</option>
+                                        <option value="15">15 Minutes</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <select id="setIntervals" class="form-control mb-4">
-                            <option value="none">-How many interval you want-</option>
-                            <option value="2">Twice</option>
-                            <option value="3">Three Times</option>
-                            <option value="4">Four Times (Recommend)</option>
-                        </select>
                         <div class="form-group">
-                            <label for="timerAudio">Timer Sound</label>
+                            <label for="setIntervals">Set Interval</label>
                             <select id="setIntervals" class="form-control mb-4">
+                                <option value="none">-</option>
+                                <option value="2">Twice</option>
+                                <option value="3">Three Times</option>
+                                <option value="4">Four Times (Recommend)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="alarmTimer">Timer Sound</label>
+                            <select id="alarmTimer" class="form-control mb-4">
                                 <option value="none">-</option>
                                 <option value="beepbeep">Beep-Beep</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="timerAudio">Break Sound</label>
-                            <select id="setIntervals" class="form-control mb-4">
+                            <label for="alarmBreak">Break Sound</label>
+                            <select id="alarmBreak" class="form-control mb-4">
                                 <option value="none">-</option>
                                 <option value="someonevoice">Someone's voice</option>
                             </select>
                         </div>
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <button class="btn btn-success form-control" Disabled="true" id="buttonStart"
-                                    onclick="timer()">Start</button>
+                                onclick="timer()">Start</button>
                             </div>
-                            <div class="col-sm-6 mt-1">
+                            <div class="col-sm-4 mt-1">
+                                <button class="btn btn-warning text-dark form-control" Disabled="true" id="buttonStart"
+                                onclick="timer()">Pause</button>
+                            </div>
+                            <div class="col-sm-4 mt-1">
                                 <button class="btn btn-danger form-control" disabled id="buttonReset"
-                                    onclick="resetTimer()">Reset</button>
+                                onclick="resetTimer()">Reset</button>
                             </div>
                         </div>
-                        <audio id="alarmTimer" hidden></audio>
-                        <audio id="alarmBreak" hidden></audio>
+                        <audio id="audioTimer" hidden></audio>
+                        <audio id="audioBreak" hidden></audio>
                     </div>
                 </div>
                 <!-- End of Body Card -->
+            </div>
+        </div>
+    </div>
+    <!-- Button trigger modal -->
+    <button type="hidden" class="btn btn-primary" data-toggle="modal" id="buttonModal" data-target="#exampleModalCenter">
+        Launch demo modal
+    </button>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Yeayyy</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h1 class="text-center">Selamat kamu telah berhasil menyelesaikan Pomodoro Teknik ini 
+                        sampai selesai, <br><br>TETAP SEMANGAT & JANGAN MENYERAH</h1>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Oke, saya akan lebih baik lagi</button>
+                </div>
             </div>
         </div>
     </div>
@@ -89,6 +127,7 @@
         </div>
     </footer>
 </body>
+<script src="js/jquery-3.6.0.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="timer.js"></script>
 
