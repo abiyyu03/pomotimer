@@ -2,16 +2,6 @@ let intervals = 0;
 let checkTimerOrBreak = 0;
 //for check active function
 // let running = false;
-// validation 
-// if(document.getElementById("alarmBreak").value != "none" || 
-// document.getElementById("alarmTimer").value != "none" ||  
-// document.getElementById("setTimer").value != "none" || 
-// document.getElementById("setBreak").value != "none" ||  
-// document.getElementById("setIntervals").value != "none")
-// {
-//     document.getElementById("titleText").innerHTML = "Kamu sudah siap ?";
-//     document.getElementById("titleHeader").className = "card-header bg-success";
-// }
 
 function timer() 
 {
@@ -22,13 +12,16 @@ function timer()
     document.getElementById("title").innerHTML = "Focus - Pomotimer ";
     document.getElementById("titleText").innerHTML = "Yuk fokus bekerja..";
     document.getElementById("titleHeader").className = "card-header bg-primary";
-    document.getElementById("buttonStart").disabled = true;
+    document.getElementById("option").style.display = 'none';
     document.getElementById("buttonReset").disabled = false;
-    document.getElementById("alarmBreak").disabled = true;
-    document.getElementById("alarmTimer").disabled = true;
-    document.getElementById("setTimer").disabled = true;
-    document.getElementById("setBreak").disabled = true;
-    document.getElementById("setIntervals").disabled = true;
+    document.getElementById("buttonStart").disabled = true;
+    // document.getElementById("alarmBreak").disabled = true;
+    // document.getElementById("alarmTimer").disabled = true;
+    // document.getElementById("setTimer").disabled = true;
+    // document.getElementById("setBreak").disabled = true;
+    // document.getElementById("setIntervals").disabled = true; 
+    document.getElementById("imgIllustration").src="illustration/work-illustration.png";
+    document.getElementById("imgIllustration").style.display="";
     document.getElementById("labelTimer").innerHTML = setTimer + " : " + "0";
     
     checkTimerOrBreak+=1;
@@ -70,6 +63,8 @@ function breakTimer()
     document.getElementById("titleText").innerHTML = "Rileks dulu kawan..";
     document.getElementById("titleHeader").className = "card-header bg-secondary";
     document.getElementById("labelTimer").innerHTML = setBreak + " : " + "0";
+    document.getElementById("imgIllustration").src="illustration/break-illustration.png";
+    document.getElementById("imgIllustration").style.display="";
     
     checkTimerOrBreak+=1;
     if(checkTimerOrBreak == 2)
@@ -86,20 +81,19 @@ function breakTimer()
         if (setBreak == 0 && seconds == -1) {
             intervals += 1;
             if (intervals == setIntervals) {
-                // alert(
-                //     "SELAMAT, KAMU TELAH MENJALANKAN TEKNIK POMODORO HINGGA TUNTAS. JANGAN LUPA DI EVALUASI YAA !"
-                //     );
                 document.getElementById("titleHeader").className = "card-header bg-success";
                 document.getElementById("titleText").innerHTML = "Atur Pomotimer";
                 document.getElementById("buttonStart").disabled = false;
                 document.getElementById("buttonReset").disabled = true;
-                document.getElementById("alarmBreak").disabled = false;
-                document.getElementById("alarmTimer").disabled = false;
-                document.getElementById("setTimer").disabled = false;
-                document.getElementById("setBreak").disabled = false;
-                document.getElementById("setIntervals").disabled = false;
+                // document.getElementById("alarmBreak").disabled = false;
+                // document.getElementById("alarmTimer").disabled = false;
+                // document.getElementById("setTimer").disabled = false;
+                // document.getElementById("setBreak").disabled = false;
+                // document.getElementById("setIntervals").disabled = false;
                 document.getElementById("buttonModal").click();
                 clearTimeout(runBreak);
+                document.getElementById("option").style.display = '';
+                document.getElementById("imgIllustration").style.display="none";
                 return;
             } else {
                 audioTimer.play();
@@ -119,6 +113,7 @@ function breakTimer()
 // Reset Timer
 function resetTimer() 
 {
+    //check if in work
     if(checkTimerOrBreak == 1 || checkTimerOrBreak % 2 != 0)
     {
         intervals = 0;
@@ -131,12 +126,17 @@ function resetTimer()
         document.getElementById("titleText").innerHTML = "Atur Pomotimer";
         document.getElementById("buttonReset").disabled = true;
         document.getElementById("buttonStart").disabled = false;
-        document.getElementById("alarmBreak").disabled = false;
-        document.getElementById("alarmTimer").disabled = false;
-        document.getElementById("setTimer").disabled = false;
-        document.getElementById("setBreak").disabled = false;
-        document.getElementById("setIntervals").disabled = false;
+        // document.getElementById("alarmBreak").disabled = false;
+        // document.getElementById("alarmTimer").disabled = false;
+        // document.getElementById("setTimer").disabled = false;
+        // document.getElementById("setBreak").disabled = false;
+        // document.getElementById("setIntervals").disabled = false;
+        document.getElementById("option").style.display = '';
+        document.getElementById("imgIllustration").style.display="none";
+        document.getElementById("imgIllustration").src="";
         clearInterval(runTimer);
+
+    //check if in break
     } else if(checkTimerOrBreak % 2 == 0) {
         intervals = 0
         checkTimerOrBreak = 0;
@@ -148,11 +148,14 @@ function resetTimer()
         document.getElementById("labelTimer").innerHTML = "0:0";
         document.getElementById("buttonReset").disabled = true;
         document.getElementById("buttonStart").disabled = false;
-        document.getElementById("alarmBreak").disabled = false;
-        document.getElementById("alarmTimer").disabled = false;
-        document.getElementById("setTimer").disabled = false;
-        document.getElementById("setBreak").disabled = false;
-        document.getElementById("setIntervals").disabled = false;
+        // document.getElementById("alarmBreak").disabled = false;
+        // document.getElementById("alarmTimer").disabled = false;
+        // document.getElementById("setTimer").disabled = false;
+        // document.getElementById("setBreak").disabled = false;
+        // document.getElementById("setIntervals").disabled = false;
+        document.getElementById("option").style.display = '';
+        document.getElementById("imgIllustration").style.display="none";
+        document.getElementById("imgIllustration").src="";
         clearInterval(runBreak);
     }
 }

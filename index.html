@@ -20,83 +20,88 @@
                 <!-- Body Card -->
                 <div class="card-shadow p-2">
                     <div class="card-body">
+                        <div class="text-center">
+                            <img style="width:40%;display:none" id="imgIllustration" class="mx-auto" alt="">
+                        </div>
                         <h1 class="text-center display-2" id="labelTimer">0:0</h1>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="setTimer">Atur lama fokus bekerja</label>
-                                    <select id="setTimer" class="form-control mb-4" onchange="enableStartButton()">
-                                        <option value="none">-</option>
-                                        <option value="1">1 Menit</option>
-                                        <option value="5">5 Menit</option>
-                                        <option value="10">10 Menit</option>
-                                        <option value="15">15 Menit</option>
-                                        <option value="20">20 Menit</option>
-                                        <option value="25">25 Menit</option>
-                                        <option value="30">30 Menit</option>
-                                    </select>
+                        <div id="option">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="setTimer">Atur lama fokus bekerja</label>
+                                        <select id="setTimer" class="form-control mb-4" onchange="enableStartButton()">
+                                            <option value="none">-</option>
+                                            <option value="1">1 Menit</option>
+                                            <option value="5">5 Menit</option>
+                                            <option value="10">10 Menit</option>
+                                            <option value="15">15 Menit</option>
+                                            <option value="20">20 Menit</option>
+                                            <option value="25">25 Menit</option>
+                                            <option value="30">30 Menit</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="setBreak">Atur lama istirahat</label>
+                                        <select id="setBreak" class="form-control mb-4" onchange="enableStartButton()">
+                                            <option value="none">-</option>
+                                            <option value="1">1 Menit</option>
+                                            <option value="5">5 Menit</option>
+                                            <option value="10">10 Menit</option>
+                                            <option value="15">15 Menit</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="setBreak">Atur lama istirahat</label>
-                                    <select id="setBreak" class="form-control mb-4" onchange="enableStartButton()">
-                                        <option value="none">-</option>
-                                        <option value="1">1 Menit</option>
-                                        <option value="5">5 Menit</option>
-                                        <option value="10">10 Menit</option>
-                                        <option value="15">15 Menit</option>
-                                    </select>
-                                </div>
+                            <div class="form-group">
+                                <label for="setIntervals">Berapa banyak Timer berulang</label>
+                                <select id="setIntervals" class="form-control mb-4">
+                                    <option value="none">-</option>
+                                    <option value="2">Dua kali</option>
+                                    <option value="3">Tiga kali</option>
+                                    <option value="4">Empat kali (Rekomendasi)</option>
+                                </select>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="setIntervals">Berapa banyak Timer berulang</label>
-                            <select id="setIntervals" class="form-control mb-4">
-                                <option value="none">-</option>
-                                <option value="2">Dua kali</option>
-                                <option value="3">Tiga kali</option>
-                                <option value="4">Empat kali (Rekomendasi)</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <!-- <div class="col-sm-10"> -->
-                                <label for="alarmTimer">Suara ketika mulai bekerja kembali</label>
-                                <select id="alarmTimer" class="form-control mb-4" >
-                                    <option value="none">-</option>
-                                    <option value="kizilsungur_military-alarm.wav">Military Alarm</option>
-                                    <option value="rudmer-rotteveel_chicken-alarm-call-full-with-occasional-bird-sound.wav">Chicken Alarm</option>
-                                    <option value="splicesound_smoke-detector-alarm-close-perspective.wav">Smoke Detector Alarm</option>
-                                    <option value="alarm.mp3">Digital Watch</option>
-                                    <option value="vendarro_alarm-no.mp3">Normal Alarm</option>
-                                    <option value="alaskarobotics_1000-hz-beeps.wav">Alaska Robotics</option>
-                                    <option value="dcloh_alarm-clock.wav">Clock Alarm</option>
-                                </select>
-                            <!-- </div> -->
-                            <!-- <div class="col-sm-2">
-                                <label class="text-light">.</label>
-                                <button class="btn btn-primary form-control" id="" onclick="demoTimer()">Play</button>
-                            </div> -->
-                        </div>
-                        <div class="form-group ">
-                            <!-- <div class="col-sm-10"> -->
-                                <label for="alarmBreak">Suara ketika kamu mulai istirahat</label>
-                                <select id="alarmBreak" class="form-control mb-4" >
-                                    <option value="none">-</option>
-                                    <!-- <option value="someonevoice.m4a">Someone's voice</option> -->
-                                    <option value="kizilsungur_military-alarm.wav">Military Alarm</option>
-                                    <option value="rudmer-rotteveel_chicken-alarm-call-full-with-occasional-bird-sound.wav">Chicken Alarm</option>
-                                    <option value="splicesound_smoke-detector-alarm-close-perspective.wav">Smoke Detector Alarm</option>
-                                    <option value="alarm.mp3">Digital Watch</option>
-                                    <option value="vendarro_alarm-no.mp3">Normal Alarm</option>
-                                    <option value="alaskarobotics_1000-hz-beeps.wav">Alaska Robotics</option>
-                                    <option value="dcloh_alarm-clock.wav">Clock Alarm</option>
-                                </select>
-                            <!-- </div>
-                            <div class="col-sm-2">
-                                <label class="text-light">.</label>
-                                <button class="btn btn-primary form-control" id="" onclick="demoBreak()">Play</button>
-                            </div> -->
+                            <div class="form-group">
+                                <!-- <div class="col-sm-10"> -->
+                                    <label for="alarmTimer">Suara ketika mulai bekerja kembali</label>
+                                    <select id="alarmTimer" class="form-control mb-4" >
+                                        <option value="none">-</option>
+                                        <option value="kizilsungur_military-alarm.wav">Military Alarm</option>
+                                        <option value="rudmer-rotteveel_chicken-alarm-call-full-with-occasional-bird-sound.wav">Chicken Alarm</option>
+                                        <option value="splicesound_smoke-detector-alarm-close-perspective.wav">Smoke Detector Alarm</option>
+                                        <option value="alarm.mp3">Digital Watch</option>
+                                        <option value="vendarro_alarm-no.mp3">Normal Alarm</option>
+                                        <option value="alaskarobotics_1000-hz-beeps.wav">Alaska Robotics</option>
+                                        <option value="dcloh_alarm-clock.wav">Clock Alarm</option>
+                                    </select>
+                                <!-- </div> -->
+                                <!-- <div class="col-sm-2">
+                                    <label class="text-light">.</label>
+                                    <button class="btn btn-primary form-control" id="" onclick="demoTimer()">Play</button>
+                                </div> -->
+                            </div>
+                            <div class="form-group ">
+                                <!-- <div class="col-sm-10"> -->
+                                    <label for="alarmBreak">Suara ketika kamu mulai istirahat</label>
+                                    <select id="alarmBreak" class="form-control mb-4" >
+                                        <option value="none">-</option>
+                                        <!-- <option value="someonevoice.m4a">Someone's voice</option> -->
+                                        <option value="kizilsungur_military-alarm.wav">Military Alarm</option>
+                                        <option value="rudmer-rotteveel_chicken-alarm-call-full-with-occasional-bird-sound.wav">Chicken Alarm</option>
+                                        <option value="splicesound_smoke-detector-alarm-close-perspective.wav">Smoke Detector Alarm</option>
+                                        <option value="alarm.mp3">Digital Watch</option>
+                                        <option value="vendarro_alarm-no.mp3">Normal Alarm</option>
+                                        <option value="alaskarobotics_1000-hz-beeps.wav">Alaska Robotics</option>
+                                        <option value="dcloh_alarm-clock.wav">Clock Alarm</option>
+                                    </select>
+                                <!-- </div>
+                                <div class="col-sm-2">
+                                    <label class="text-light">.</label>
+                                    <button class="btn btn-primary form-control" id="" onclick="demoBreak()">Play</button>
+                                </div> -->
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
