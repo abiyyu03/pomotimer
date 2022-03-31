@@ -25,15 +25,13 @@ function timer()
     document.getElementById("labelTimer").innerHTML = setTimer + " : " + "0";
     
     checkTimerOrBreak+=1;
-    
-    
+
     if(checkTimerOrBreak == 1){
         seconds = 60;
         setTimer -= 1;
     } else {
         setTimer -= 1;
         seconds = 59;
-        
     }
     
     runTimer = setInterval(function () {
