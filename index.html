@@ -144,6 +144,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="timer.js"></script>
     <script>
+
     window.addEventListener('load', () => {
       registerSW();
     });
@@ -154,7 +155,7 @@
         try {
           await navigator
                 .serviceWorker
-                .register('serviceworker.js');
+                .register('sw.js');
         }
         catch (e) {
           console.log('SW registration failed');
