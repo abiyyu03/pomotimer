@@ -1,27 +1,19 @@
-let cacheName = 'v1:static';
+var staticCacheName = "pwa";
 
-self.addEventListener('install', function(e){
+self.addEventListener("install", function (e) {
   e.waitUntil(
-    caches.open(cacheName).then(function(cache){
-      return cache.addAll([
-        './',
-        './css/bootstrap.min.css',
-        './js/bootstrap.min.js',
-        './index.html'
-      ]).then(function(){
-        self.skipWaiting();
-      });
+    caches.open(staticCacheName).then(function (cache) {
+      return cache.addAll(["/"]);
     })
   );
 });
 
-self.addEventListener('fetch',function(event){
+self.addEventListener("fetch", function (event) {
+  console.log(event.request.url);
+
   event.respondWith(
-    caches.match(event.request).then(function(response){
-      if(response){
-        return response;
-      }
-      return fetch(event.request);
+    caches.match(event.request).then(function (response) {
+      return response || fetch(event.request);
     })
   );
 });
