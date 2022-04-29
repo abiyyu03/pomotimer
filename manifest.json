@@ -5,12 +5,12 @@
   "start_url":"index.html",
   "icons":[
     {
-      "src":"icons/clock.png",
+      "src":"icons/clock-192x192.png",
       "sizes":"192x192",
       "type":"image/png"
     },
     {
-      "src":"icons/clock.png",
+      "src":"icons/clock-512x512.png",
       "sizes":"512x512",
       "type":"image/png"
     }
