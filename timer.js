@@ -2,8 +2,7 @@ let intervals = 0;
 let checkTimerOrBreak = 0;
 //for check active function
 // let running = false;
-
-function timer() 
+function timer()
 {
     let setTimer = parseInt(document.getElementById("setTimer").value);
     let audioBreak = document.getElementById("audioBreak");
@@ -19,11 +18,11 @@ function timer()
     // document.getElementById("alarmTimer").disabled = true;
     // document.getElementById("setTimer").disabled = true;
     // document.getElementById("setBreak").disabled = true;
-    // document.getElementById("setIntervals").disabled = true; 
+    // document.getElementById("setIntervals").disabled = true;
     document.getElementById("imgIllustration").src="illustration/work-illustration.png";
     document.getElementById("imgIllustration").style.display="";
     document.getElementById("labelTimer").innerHTML = setTimer + " : " + "0";
-    
+
     checkTimerOrBreak+=1;
 
     if(checkTimerOrBreak == 1){
@@ -33,7 +32,7 @@ function timer()
         setTimer -= 1;
         seconds = 59;
     }
-    
+
     runTimer = setInterval(function () {
         seconds--;
         if (setTimer == 0 && seconds == -1) {
@@ -50,20 +49,20 @@ function timer()
     }, 1000);
 }
 
-function breakTimer() 
+function breakTimer()
 {
     let setBreak = parseInt(document.getElementById("setBreak").value);
     let setIntervals = parseInt(document.getElementById("setIntervals").value);
     let audioTimer = document.getElementById("audioTimer");
     audioTimer.src = "alarm/"+alarmTimer.value;
-    
+
     document.getElementById("title").innerHTML = "Istirahat - Pomotimer ";
     document.getElementById("titleText").innerHTML = "Rileks dulu kawan..";
     document.getElementById("titleHeader").className = "card-header bg-secondary";
     document.getElementById("labelTimer").innerHTML = setBreak + " : " + "0";
     document.getElementById("imgIllustration").src="illustration/break-illustration.png";
     document.getElementById("imgIllustration").style.display="";
-    
+
     checkTimerOrBreak+=1;
     if(checkTimerOrBreak == 2)
     {
@@ -73,7 +72,7 @@ function breakTimer()
         setBreak -= 1;
         seconds = 59;
     }
-    
+
     runBreak = setInterval(function () {
         seconds--;
         if (setBreak == 0 && seconds == -1) {
@@ -109,7 +108,7 @@ function breakTimer()
 }
 
 // Reset Timer
-function resetTimer() 
+function resetTimer()
 {
     //check if in work
     if(checkTimerOrBreak == 1 || checkTimerOrBreak % 2 != 0)
@@ -158,7 +157,7 @@ function resetTimer()
     }
 }
 
-function enableStartButton() 
+function enableStartButton()
 {
     if (setTimer != "none" ) {
         document.getElementById("buttonStart").disabled = false;
