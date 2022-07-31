@@ -1,4 +1,4 @@
-(var Page = (function() {
+let Page = (function() {
 
     // declare the view model used within the page
     function ViewModel() {
