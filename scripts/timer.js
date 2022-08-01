@@ -6,7 +6,7 @@ let checkTimerOrBreak = 0;
 async function startTimer()
 {
     let setTimer = parseInt(document.getElementById("setTimer").value);
-    let audioBreak = document.getElementById("audioBreak");
+    const audioBreak = document.getElementById("audioBreak");
     document.getElementById("labelTimer").innerHTML = setTimer + " : " + "0";
     audioBreak.src = "alarm/"+alarmBreak.value;
 
@@ -23,7 +23,7 @@ async function startTimer()
     return new Promise(resolve => 
         runTimer = setInterval(function () {
             seconds--;
-            let isBreak = setTimer == 0 && seconds == -1;
+            const isBreak = setTimer == 0 && seconds == -1;
             
             if (isBreak) {
                 clearTimeout(runTimer);
@@ -43,13 +43,14 @@ async function breakTimer()
 {
     let setBreak = parseInt(document.getElementById("setBreak").value);
     let setIntervals = parseInt(document.getElementById("setIntervals").value);
-    let audioTimer = document.getElementById("audioTimer");
+    const audioTimer = document.getElementById("audioTimer");
     audioTimer.src = "alarm/"+alarmTimer.value;
     
     domTimerBreak();
 
-    checkTimerOrBreak+=1;
-    if(checkTimerOrBreak == 2)
+    checkTimerOrBreak += 1;
+    const isInBreak = checkTimerOrBreak == 2;
+    if(isInBreak)
     {
         seconds = 59;
         setBreak -= 1;
