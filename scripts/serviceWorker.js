@@ -1,5 +1,5 @@
-var app = 'pwa-pomotimer-v1';
-var filesToCache = [
+const app = 'pwa-pomotimer-v1';
+const filesToCache = [
 	'../',
 	'timer.js',
 	'main.js',
@@ -18,11 +18,14 @@ var filesToCache = [
 ];
 
 /* Start the service worker and cache all of the app's content */
-self.addEventListener('install', function (e) {
+self.addEventListener('install', (e) => {
+	console.log('[Service Worker] Install');
 	e.waitUntil(
-		caches.open(app).then((cache) => {
-			cache.addAll(filesToCache);
-		}),
+		(async () => {
+			const cache = await caches.open(cacheName);
+			console.log('[Service Worker] Caching all: app shell and content');
+			await cache.addAll(contentToCache);
+		})(),
 	);
 });
 
