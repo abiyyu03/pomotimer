@@ -18,9 +18,15 @@ const filesToCache = [
 ];
 
 // When the service worker is installing, open the cache and add the precache resources to it
-self.addEventListener('install', (event) => {
-	console.log('Service worker install event!');
-	event.waitUntil(caches.open(app).then((cache) => cache.addAll(filesToCache)));
+self.addEventListener('install', (e) => {
+	console.log('[Service Worker] Install');
+	e.waitUntil(
+		(async () => {
+			const cache = await caches.open(app);
+			console.log('[Service Worker] Caching all: app shell and content');
+			await cache.addAll(filesToCache);
+		})(),
+	);
 });
 
 self.addEventListener('activate', (event) => {
