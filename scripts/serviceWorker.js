@@ -18,15 +18,9 @@ const filesToCache = [
 ];
 
 // When the service worker is installing, open the cache and add the precache resources to it
-self.addEventListener('install', (e) => {
-	console.log('[Service Worker] Install');
-	e.waitUntil(
-		(async () => {
-			const cache = await caches.open(app);
-			console.log('[Service Worker] Caching all: app shell and content');
-			await cache.addAll(filesToCache);
-		})(),
-	);
+self.addEventListener('install', (event) => {
+	console.log('Service worker install event!');
+	event.waitUntil(caches.open(app).then((cache) => cache.addAll(filesToCache)));
 });
 
 self.addEventListener('activate', (event) => {
@@ -34,19 +28,14 @@ self.addEventListener('activate', (event) => {
 });
 
 // When there's an incoming fetch request, try and respond with a precached resource, otherwise fall back to the network
-self.addEventListener('fetch', (e) => {
-	e.respondWith(
-		(async () => {
-			const r = await caches.match(e.request);
-			console.log(`[Service Worker] Fetching resource: ${e.request.url}`);
-			if (r) {
-				return r;
+self.addEventListener('fetch', (event) => {
+	console.log('Fetch intercepted for:', event.request.url);
+	event.respondWith(
+		caches.match(event.request).then((cachedResponse) => {
+			if (cachedResponse) {
+				return cachedResponse;
 			}
-			const response = await fetch(e.request);
-			const cache = await caches.open(app);
-			console.log(`[Service Worker] Caching new resource: ${e.request.url}`);
-			cache.put(e.request, response.clone());
-			return response;
-		})(),
+			return fetch(event.request);
+		}),
 	);
 });
