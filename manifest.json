@@ -3,6 +3,7 @@
   "name":"Pomodoro Timer",
   "description":"PWA Pomotimer",
   "start_url":"index.html",
+  "scope":"/",
   "icons":[
     {
       "src":"./assets/icons/icon.png",
