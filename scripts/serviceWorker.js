@@ -1,8 +1,8 @@
 var app = 'pwa-pomotimer-v1';
 var filesToCache = [
 	'../',
-	'./timer.js',
-	'./main.js',
+	'timer.js',
+	'main.js',
 	'../index.html',
 	'../assets/css/bootstrap.min.css',
 	'../assets/js/bootstrap.min.js',
