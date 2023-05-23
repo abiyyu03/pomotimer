@@ -17,32 +17,25 @@ const filesToCache = [
 	'../assets/alarm/splicesound_smoke-detector-alarm-close-perspective.wav',
 ];
 
-/* Start the service worker and cache all of the app's content */
-self.addEventListener('install', (e) => {
-	console.log('[Service Worker] Install');
-	e.waitUntil(
-		(async () => {
-			const cache = await caches.open(cacheName);
-			console.log('[Service Worker] Caching all: app shell and content');
-			await cache.addAll(contentToCache);
-		})(),
-	);
+// When the service worker is installing, open the cache and add the precache resources to it
+self.addEventListener('install', (event) => {
+	console.log('Service worker install event!');
+	event.waitUntil(caches.open(app).then((cache) => cache.addAll(precacheResources)));
 });
 
-/* Serve cached content when offline */
-self.addEventListener('fetch', (e) => {
-	e.respondWith(
-		(async () => {
-			const r = await caches.match(e.request);
-			console.log(`[Service Worker] Fetching resource: ${e.request.url}`);
-			if (r) {
-				return r;
+self.addEventListener('activate', (event) => {
+	console.log('Service worker activate event!');
+});
+
+// When there's an incoming fetch request, try and respond with a precached resource, otherwise fall back to the network
+self.addEventListener('fetch', (event) => {
+	console.log('Fetch intercepted for:', event.request.url);
+	event.respondWith(
+		caches.match(event.request).then((cachedResponse) => {
+			if (cachedResponse) {
+				return cachedResponse;
 			}
-			const response = await fetch(e.request);
-			const cache = await caches.open(cacheName);
-			console.log(`[Service Worker] Caching new resource: ${e.request.url}`);
-			cache.put(e.request, response.clone());
-			return response;
-		})(),
+			return fetch(event.request);
+		}),
 	);
 });
