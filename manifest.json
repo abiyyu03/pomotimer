@@ -4,6 +4,12 @@
   "description":"PWA Pomotimer",
   "start_url":"index.html",
   "scope":"/",
+  "protocol_handlers": [
+    {
+      "protocol": "web+pomotimer",
+      "url": "/"
+    }
+  ],
   "icons":[
     {
       "src":"./assets/icons/icon.png",
