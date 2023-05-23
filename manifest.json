@@ -7,7 +7,7 @@
   "protocol_handlers": [
     {
       "protocol": "web+pomotimer",
-      "url": "/"
+      "url": "/%s"
     }
   ],
   "icons":[
