@@ -11,6 +11,9 @@
 		<title id="title">Pomotimer v1</title>
 		<script type="application/javascript">
 			document.interestCohort = null;
+			window.onbeforeunload = function () {
+				return 'Dude, are you sure you want to leave? Think of the kittens!';
+			};
 		</script>
 	</head>
 	<body class="bg-dark">
