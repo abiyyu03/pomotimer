@@ -1,15 +1,8 @@
 {
-  "short_name":"Pomotimer",
+  "short_name":"pwa-pomotimer-v1",
   "name":"Pomodoro Timer",
   "description":"PWA Pomotimer",
   "start_url":"index.html",
-  "scope":"/",
-  "protocol_handlers": [
-    {
-      "protocol": "web+pomotimer",
-      "url": "/%s"
-    }
-  ],
   "icons":[
     {
       "src":"./assets/icons/icon.png",
@@ -23,7 +16,7 @@
     }
   ],
   "display":"standalone",
-  "orientation":"portrait-primary",
+  "orientation":"portrait",
   "theme_color":"#28A745",
   "background_color":"#28A745"
 }
